@@ -19,6 +19,6 @@ Para controle do código e para facilitar o gerencimento utilizei, junto ao Git,
 
 
 # Execução
-Antes de executarmos o sistema, instale as dependências do projeto usando o comando **Yarn install** ou **Npm install**, de acordo com o seu gerenciador de dependências.
+Antes de executarmos o sistema, instale as dependências do projeto usando o comando **Yarn add** ou **Npm install**, de acordo com o seu gerenciador de dependências.
 
 Para executar o projeto utilize o comando **Yarn start** ou **Npm start**, de acordo com o seu gerenciador de dependências.
