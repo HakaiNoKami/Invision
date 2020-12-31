@@ -1,0 +1,225 @@
+@import "../../App/Variables.scss";
+
+// XS
+.sign-in {
+  width: 100vw;
+  height: 100%;
+
+  .carousel {
+    min-height: 100vh;
+    padding: 40px;
+    background-color: $bg-carousel;
+
+    &-item {
+      &-img {
+        width: 100%;
+        margin-bottom: 30px;
+      }
+
+      .MuiTypography-subtitle1 {
+        font-size: $subtitle-size;
+        font-weight: $subtitle-weight;
+        line-height: $subtitle-line-height;
+        color: $color-text-carousel;
+        margin-bottom: 20px;
+      }
+
+      .MuiTypography-body1 {
+        font-size: $description-size;
+        font-weight: $description-weight;
+        line-height: $description-line-height;
+        color: $color-text-carousel;
+      }
+
+      .slick-dots {
+        li {
+          width: 8px;
+          height: 8px;
+          margin: 0 6px;
+          transition: $dots-transition;
+
+          button {
+            display: block;
+            width: 8px;
+            height: 8px;
+            background-color: $color-text-carousel;
+            opacity: $dots-semi-opacit;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: $dots-transition;
+
+            &:before,
+            &::before {
+              content: none;
+            }
+          }
+
+          &.slick-active {
+            width: 24px;
+
+            button {
+              width: 24px;
+              opacity: $dots-opacit;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .form {
+    height: 100%;
+    padding: 40px;
+
+    .MuiTypography-h6 {
+      font-size: $invision-size;
+      font-weight: $invision-weight;
+      line-height: $invision-line-height;
+      color: $form-text-color;
+      margin-bottom: 45px;
+    }
+
+    .MuiTypography-subtitle1 {
+      font-size: $subtitle-size;
+      font-weight: $subtitle-weight;
+      line-height: $subtitle-line-height;
+      color: $form-text-opacit-color;
+      margin-bottom: 45px;
+    }
+
+    form {
+      width: 100%;
+      max-width: 433px;
+      margin: 0 auto;
+
+      .form-group {
+        margin-bottom: 10px;
+
+        .MuiTextField-root {
+          .MuiInputBase-input {
+            padding: 11px 20px;
+          }
+        }
+
+        .forgot-password {
+          font-size: $caption-size;
+          font-weight: $caption-weight;
+          line-height: $caption-line-height;
+          color: $form-text-opacit-color;
+          text-align: $caption-align;
+          margin-top: 18px;
+          display: block;
+        }
+
+        .MuiButton-contained {
+          width: 175px;
+          height: 45px;
+          padding: 15px 10px 10px;
+          background-color: $form-text-opacit-color;
+          text-align: $submit-align;
+          border-radius: 100px;
+          left: calc(50% - (175px / 2));
+          margin-top: 15px;
+
+          .MuiButton-label {
+            font-size: $submit-size;
+            font-weight: $submit-weight;
+            line-height: $submit-line-height;
+            color: $form-button-color;
+            text-transform: $submit-text-transform;
+          }
+        }
+      }
+
+      .divider {
+        padding: 12px 0;
+      }
+
+      .google-button {
+        width: 263px;
+        height: 45px;
+        padding: 12px 10px 10px;
+        background-color: $form-button-color;
+        text-align: $google-button-align;
+        border-radius: 100px;
+        left: calc(50% - (263px / 2));
+        margin-top: 12px;
+
+        .MuiButton-label {
+          font-size: $google-button-size;
+          font-weight: $google-button-weight;
+          line-height: $google-button-line-height;
+          color: $form-text-color;
+          text-transform: $google-button-text-transform;
+
+          .MuiSvgIcon-root {
+            font-size: $google-icon-size;
+          }
+        }
+      }
+    }
+
+    .sign-up-link {
+      font-size: $caption-size;
+      font-weight: $caption-weight;
+      line-height: $caption-line-height;
+      color: $form-text-opacit-color;
+      margin-top: 30px;
+
+      .MuiLink-root {
+        font-size: $caption-link-size;
+        font-weight: $caption-link-weight;
+        line-height: $caption-link-line-height;
+        color: $form-link-color;
+        text-decoration: $caption-link-text-decoration;
+      }
+    }
+  }
+}
+
+// Sm
+@media (min-width: 576px) {
+  .sign-in {
+    .carousel {
+      padding: 75px;
+
+      &-item {
+        .slick-dots {
+          transform: translateY(50%);
+          bottom: -30px;
+        }
+      }
+    }
+
+    .form {
+      padding: 75px;
+    }
+  }
+}
+
+// Md
+@media (min-width: 768px) {
+  .sign-in {
+    .carousel,
+    .form {
+      display: $grid-display;
+      align-items: $grid-align-items;
+      justify-content: $grid-justify-content;
+      flex-direction: $grid-flex-direction;
+    }
+  }
+}
+
+// Lg
+@media (min-width: 992px) {
+  .sign-in {
+    .carousel,
+    .form {
+      padding: 75px;
+    }
+  }
+}
+
+// Xl
+@media (min-width: 1200px) {
+}
