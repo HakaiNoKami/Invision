@@ -38,20 +38,20 @@ const SignUp = () => {
   const [email, setEmail] = useState({ value: "", error: false, message: "" });
   const [password, setPassword] = useState({ value: "", error: false, message: "" });
 
-  const formChange = (event) => {
+  const handleFormChange = (event) => {
     let value = event.target.value;
+    let emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     switch (event.target.name) {
       case "name":
-        !value || value.length > 2 ? setName({ value, error: false, message: "" }) : setName({ ...name, value });
+        !value.trim() || value.length > 2 ? setName({ value, error: false, message: "" }) : setName({ ...name, value });
         break;
       case "email":
-        let emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        !value || emailRegex.test(value)
+        !value.trim() || emailRegex.test(value)
           ? setEmail({ value, error: false, message: "" })
-          : setEmail({ value, error: true, message: "O e-mail está incorreto" });
+          : setEmail({ value, error: true, message: "O e-mail é inválido" });
         break;
       case "password":
-        !value || value.length >= 6
+        !value.trim() || value.length >= 6
           ? setPassword({ value, error: false, message: "" })
           : setPassword({ value, error: true, message: "A senha não pode ter menos de 6 caracteres" });
         break;
@@ -60,7 +60,7 @@ const SignUp = () => {
     }
   };
 
-  const onSignUp = (event) => {
+  const handleFormSubmit = (event) => {
     event.preventDefault();
 
     if (!name.value) setName({ ...name, error: true, message: "Este campo não pode ser vazio" });
@@ -70,6 +70,10 @@ const SignUp = () => {
     if (!password.value) setPassword({ ...password, error: true, message: "Este campo não pode ser vazio" });
 
     if (!name.value || !email.value || !password.value) return;
+
+    setName({ value: "", error: false, message: "" });
+    setEmail({ value: "", error: false, message: "" });
+    setPassword({ value: "", error: false, message: "" });
   };
 
   return (
@@ -86,7 +90,7 @@ const SignUp = () => {
         <Typography variant="subtitle1" align="center">
           Getting Started
         </Typography>
-        <form onSubmit={onSignUp} onChange={formChange}>
+        <form onSubmit={handleFormSubmit} onChange={handleFormChange}>
           <div className="form-group">
             <TextField
               label="Full Name"
@@ -105,6 +109,7 @@ const SignUp = () => {
               value={email.value}
               error={email.error}
               helperText={email.message}
+              inputProps={{"data-testid": "email"}}
             />
           </div>
           <div className="form-group">
@@ -116,10 +121,11 @@ const SignUp = () => {
               value={password.value}
               error={password.error}
               helperText={password.message}
+              inputProps={{"data-testid": "password"}}
             />
           </div>
           <div className="form-group">
-            <Button variant="contained" type="submit">
+            <Button variant="contained" type="submit" data-testid="button-submit">
               Sign up
             </Button>
           </div>

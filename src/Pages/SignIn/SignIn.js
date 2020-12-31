@@ -37,17 +37,17 @@ const SignIn = () => {
   const [email, setEmail] = useState({ value: "", error: false, message: "" });
   const [password, setPassword] = useState({ value: "", error: false, message: "" });
 
-  const formChange = (event) => {
+  const handleFormChange = (event) => {
     let value = event.target.value;
     let emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     switch (event.target.name) {
       case "email":
-        !value || emailRegex.test(value)
+        !value.trim() || emailRegex.test(value)
           ? setEmail({ value, error: false, message: "" })
           : setEmail({ value, error: true, message: "O e-mail está incorreto" });
         break;
       case "password":
-        !value || value.length > 6
+        !value.trim() || value.length > 6
           ? setPassword({ value, error: false, message: "" })
           : setPassword({ ...password, value });
         break;
@@ -56,7 +56,7 @@ const SignIn = () => {
     }
   };
 
-  const onSignIn = (event) => {
+  const handleFormSubmit = (event) => {
     event.preventDefault();
 
     if (!email.value) setEmail({ ...email, error: true, message: "Este campo não pode ser vazio" });
@@ -64,6 +64,9 @@ const SignIn = () => {
     if (!password.value) setPassword({ ...password, error: true, message: "Este campo não pode ser vazio" });
 
     if (!email.value || !password.value) return;
+
+    setEmail({ value: "", error: false, message: "" });
+    setPassword({ value: "", error: false, message: "" });
   };
 
   return (
@@ -80,7 +83,7 @@ const SignIn = () => {
         <Typography variant="subtitle1" align="center">
           Welcome to Invision
         </Typography>
-        <form onSubmit={onSignIn} onChange={formChange}>
+        <form onSubmit={handleFormSubmit} onChange={handleFormChange}>
           <div className="form-group">
             <TextField
               label="Users Name or Email"
@@ -89,6 +92,7 @@ const SignIn = () => {
               value={email.value}
               error={email.error}
               helperText={email.message}
+              inputProps={{"data-testid": "email"}}
             />
           </div>
           <div className="form-group">
@@ -106,7 +110,7 @@ const SignIn = () => {
             </Link>
           </div>
           <div className="form-group">
-            <Button variant="contained" type="submit">
+            <Button variant="contained" type="submit" data-testid="button-submit">
               Sign in
             </Button>
           </div>
