@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Grid, Typography, TextField, Link, Button } from "@material-ui/core";
+import Carousel from "../../Components/Carousel";
 import Divider from "../../Components/Divider";
-import "./Login.scss";
+import "./SignIn.scss";
 
 // Images
 import CarouselImage from "../../Images/Carousel.png";
@@ -9,52 +10,67 @@ import CarouselImage from "../../Images/Carousel.png";
 // Icons
 import GoogleIcon from "../../Components/GoogleIcon";
 
-const Login = () => {
+const carouselData = [
+  {
+    image: CarouselImage,
+    subtitle: "Marcenas mattis egestas",
+    description: "Erdum et malesuada fames ac ante ileum primmer in faucibus uspendisse porta.",
+  },
+  {
+    image: CarouselImage,
+    subtitle: "Marcenas mattis egestas",
+    description: "Erdum et malesuada fames ac ante ileum primmer in faucibus uspendisse porta.",
+  },
+  {
+    image: CarouselImage,
+    subtitle: "Marcenas mattis egestas",
+    description: "Erdum et malesuada fames ac ante ileum primmer in faucibus uspendisse porta.",
+  },
+  {
+    image: CarouselImage,
+    subtitle: "Marcenas mattis egestas",
+    description: "Erdum et malesuada fames ac ante ileum primmer in faucibus uspendisse porta.",
+  },
+];
+
+const SignIn = () => {
   const [email, setEmail] = useState({ value: "", error: false, message: "" });
   const [password, setPassword] = useState({ value: "", error: false, message: "" });
 
-  const formChange = (e) => {
-    let value = e.target.value;
-    let emailPath = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    switch (e.target.name) {
+  const formChange = (event) => {
+    let value = event.target.value;
+    let emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    switch (event.target.name) {
       case "email":
-        !value || emailPath.test(value)
+        !value || emailRegex.test(value)
           ? setEmail({ value, error: false, message: "" })
           : setEmail({ value, error: true, message: "O e-mail está incorreto" });
         break;
       case "password":
-        setPassword({ ...password, value: value });
+        !value || value.length > 6
+          ? setPassword({ value, error: false, message: "" })
+          : setPassword({ ...password, value });
         break;
       default:
         break;
     }
   };
 
-  const signIn = (e) => {
-    e.preventDefault();
+  const onSignIn = (event) => {
+    event.preventDefault();
 
-    if (!email.value) {
-      setEmail({ ...email, error: true, message: "Este campo não pode ser vazio" });
-      return;
-    }
+    if (!email.value) setEmail({ ...email, error: true, message: "Este campo não pode ser vazio" });
 
-    if (!password.value) {
-      setPassword({ ...password, error: true, message: "Este campo não pode ser vazio" });
-      return;
-    }
+    if (!password.value) setPassword({ ...password, error: true, message: "Este campo não pode ser vazio" });
+
+    if (!email.value || !password.value) return;
   };
 
   return (
-    <Grid container className="login">
+    <Grid container className="sign-in">
       <Grid item xs={12} md={6} className="carousel">
         <div className="carousel-item">
-          <img src={CarouselImage} alt="Carousel" className="carousel-item-img" />
-          <Typography variant="subtitle1" align="center">
-            Marcenas mattis egestas
-          </Typography>
-          <Typography variant="body1" align="center">
-            Erdum et malesuada fames ac ante ileum primmer in faucibus uspendisse porta.
-          </Typography>
+          <Carousel list={carouselData} />
         </div>
       </Grid>
       <Grid item xs={12} md={6} className="form">
@@ -64,10 +80,10 @@ const Login = () => {
         <Typography variant="subtitle1" align="center">
           Welcome to Invision
         </Typography>
-        <form onSubmit={signIn} onChange={formChange}>
+        <form onSubmit={onSignIn} onChange={formChange}>
           <div className="form-group">
             <TextField
-              label="Users name or Email"
+              label="Users Name or Email"
               name="email"
               fullWidth
               value={email.value}
@@ -79,7 +95,7 @@ const Login = () => {
             <TextField
               label="Password"
               name="password"
-              itemType="password"
+              type="password"
               fullWidth
               value={password.value}
               error={password.error}
@@ -110,4 +126,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignIn;
