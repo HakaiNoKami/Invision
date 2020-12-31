@@ -6,6 +6,7 @@
   height: 100%;
 
   .carousel {
+    display: none;
     min-height: 100vh;
     padding: 40px;
     background-color: $bg-carousel;
@@ -13,7 +14,7 @@
     &-item {
       &-img {
         width: 100%;
-        margin-bottom: 30px;
+        margin: 0 auto 30px;
       }
 
       .MuiTypography-subtitle1 {
@@ -212,14 +213,36 @@
 
 // Lg
 @media (min-width: 992px) {
-  .sign-in {
-    .carousel,
-    .form {
-      padding: 75px;
-    }
-  }
 }
 
 // Xl
 @media (min-width: 1200px) {
+  .sign-in {
+    .carousel {
+      padding: 20px 75px;
+
+      &-item {
+        &-img {
+          max-width: 500px;
+        }
+      }
+    }
+
+    .form {
+      padding: 20px 75px;
+    }
+  }
+}
+
+// XXl
+@media (min-width: 1440px) {
+  .sign-in {
+    .carousel {
+      padding: 45px 75px;
+    }
+
+    .form {
+      padding: 45px 75px;
+    }
+  }
 }
