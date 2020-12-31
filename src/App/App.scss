@@ -1,4 +1,22 @@
+@import url("https://use.typekit.net/gcv1tsw.css");
+@import "./Variables.scss";
+
 // XS
+body {
+  background-color: $bg-color;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  span,
+  a {
+    font-family: muli, sans-serif !important;
+  }
+}
 
 // Sm
 @media (min-width: 576px) {
