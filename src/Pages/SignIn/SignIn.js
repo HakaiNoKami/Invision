@@ -63,7 +63,7 @@ const SignIn = () => {
 
     if (!password.value) setPassword({ ...password, error: true, message: "Este campo não pode ser vazio" });
 
-    if (!email.value || !password.value) return;
+    if (email.error || password.error) return;
 
     setEmail({ value: "", error: false, message: "" });
     setPassword({ value: "", error: false, message: "" });

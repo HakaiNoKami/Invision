@@ -69,7 +69,7 @@ const SignUp = () => {
 
     if (!password.value) setPassword({ ...password, error: true, message: "Este campo não pode ser vazio" });
 
-    if (!name.value || !email.value || !password.value) return;
+    if (name.error || email.error || password.error) return;
 
     setName({ value: "", error: false, message: "" });
     setEmail({ value: "", error: false, message: "" });
