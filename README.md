@@ -23,4 +23,4 @@ Antes de executarmos o sistema, instale as dependências do projeto usando o com
 
 Para executar o projeto utilize o comando **Yarn start** ou **Npm start**, de acordo com o seu gerenciador de dependências.
 
-Para executar os testes automatizados utilize o comando **Yarn test** ou **Npm start**, de acordo com o seu gerenciador de dependências.
+Para executar os testes automatizados utilize o comando **Yarn test** ou **Npm test**, de acordo com o seu gerenciador de dependências.
