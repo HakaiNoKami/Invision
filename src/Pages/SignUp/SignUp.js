@@ -14,36 +14,46 @@ const carouselData = [
   {
     image: CarouselImage,
     subtitle: "Marcenas mattis egestas",
-    description: "Erdum et malesuada fames ac ante ileum primmer in faucibus uspendisse porta.",
+    description:
+      "Erdum et malesuada fames ac ante ileum primmer in faucibus uspendisse porta.",
   },
   {
     image: CarouselImage,
     subtitle: "Marcenas mattis egestas",
-    description: "Erdum et malesuada fames ac ante ileum primmer in faucibus uspendisse porta.",
+    description:
+      "Erdum et malesuada fames ac ante ileum primmer in faucibus uspendisse porta.",
   },
   {
     image: CarouselImage,
     subtitle: "Marcenas mattis egestas",
-    description: "Erdum et malesuada fames ac ante ileum primmer in faucibus uspendisse porta.",
+    description:
+      "Erdum et malesuada fames ac ante ileum primmer in faucibus uspendisse porta.",
   },
   {
     image: CarouselImage,
     subtitle: "Marcenas mattis egestas",
-    description: "Erdum et malesuada fames ac ante ileum primmer in faucibus uspendisse porta.",
+    description:
+      "Erdum et malesuada fames ac ante ileum primmer in faucibus uspendisse porta.",
   },
 ];
 
 const SignUp = () => {
   const [name, setName] = useState({ value: "", error: false, message: "" });
   const [email, setEmail] = useState({ value: "", error: false, message: "" });
-  const [password, setPassword] = useState({ value: "", error: false, message: "" });
+  const [password, setPassword] = useState({
+    value: "",
+    error: false,
+    message: "",
+  });
 
   const handleFormChange = (event) => {
     let value = event.target.value;
     let emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     switch (event.target.name) {
       case "name":
-        !value.trim() || value.length > 2 ? setName({ value, error: false, message: "" }) : setName({ ...name, value });
+        !value.trim() || value.length > 2
+          ? setName({ value, error: false, message: "" })
+          : setName({ ...name, value });
         break;
       case "email":
         !value.trim() || emailRegex.test(value)
@@ -53,7 +63,11 @@ const SignUp = () => {
       case "password":
         !value.trim() || value.length >= 6
           ? setPassword({ value, error: false, message: "" })
-          : setPassword({ value, error: true, message: "A senha não pode ter menos de 6 caracteres" });
+          : setPassword({
+              value,
+              error: true,
+              message: "A senha não pode ter menos de 6 caracteres",
+            });
         break;
       default:
         break;
@@ -63,17 +77,34 @@ const SignUp = () => {
   const handleFormSubmit = (event) => {
     event.preventDefault();
 
-    if (!name.value) setName({ ...name, error: true, message: "Este campo não pode ser vazio" });
+    if (!name.value)
+      setName({
+        ...name,
+        error: true,
+        message: "Este campo não pode ser vazio",
+      });
 
-    if (!email.value) setEmail({ ...email, error: true, message: "Este campo não pode ser vazio" });
+    if (!email.value)
+      setEmail({
+        ...email,
+        error: true,
+        message: "Este campo não pode ser vazio",
+      });
 
-    if (!password.value) setPassword({ ...password, error: true, message: "Este campo não pode ser vazio" });
+    if (!password.value)
+      setPassword({
+        ...password,
+        error: true,
+        message: "Este campo não pode ser vazio",
+      });
 
-    if (name.error || email.error || password.error) return;
+    if (!name.value || !email.value || !password.value) return;
 
-    setName({ value: "", error: false, message: "" });
-    setEmail({ value: "", error: false, message: "" });
-    setPassword({ value: "", error: false, message: "" });
+    if (!name.error && !email.error && !password.error) {
+      setName({ value: "", error: false, message: "" });
+      setEmail({ value: "", error: false, message: "" });
+      setPassword({ value: "", error: false, message: "" });
+    }
   };
 
   return (
@@ -109,7 +140,7 @@ const SignUp = () => {
               value={email.value}
               error={email.error}
               helperText={email.message}
-              inputProps={{"data-testid": "email"}}
+              inputProps={{ "data-testid": "email" }}
             />
           </div>
           <div className="form-group">
@@ -121,16 +152,24 @@ const SignUp = () => {
               value={password.value}
               error={password.error}
               helperText={password.message}
-              inputProps={{"data-testid": "password"}}
+              inputProps={{ "data-testid": "password" }}
             />
           </div>
           <div className="form-group">
-            <Button variant="contained" type="submit" data-testid="button-submit">
+            <Button
+              variant="contained"
+              type="submit"
+              data-testid="button-submit"
+            >
               Sign up
             </Button>
           </div>
           <Divider text="or" />
-          <Button variant="contained" startIcon={<GoogleIcon />} className="google-button">
+          <Button
+            variant="contained"
+            startIcon={<GoogleIcon />}
+            className="google-button"
+          >
             Sign up with Google
           </Button>
         </form>

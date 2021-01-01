@@ -14,28 +14,36 @@ const carouselData = [
   {
     image: CarouselImage,
     subtitle: "Marcenas mattis egestas",
-    description: "Erdum et malesuada fames ac ante ileum primmer in faucibus uspendisse porta.",
+    description:
+      "Erdum et malesuada fames ac ante ileum primmer in faucibus uspendisse porta.",
   },
   {
     image: CarouselImage,
     subtitle: "Marcenas mattis egestas",
-    description: "Erdum et malesuada fames ac ante ileum primmer in faucibus uspendisse porta.",
+    description:
+      "Erdum et malesuada fames ac ante ileum primmer in faucibus uspendisse porta.",
   },
   {
     image: CarouselImage,
     subtitle: "Marcenas mattis egestas",
-    description: "Erdum et malesuada fames ac ante ileum primmer in faucibus uspendisse porta.",
+    description:
+      "Erdum et malesuada fames ac ante ileum primmer in faucibus uspendisse porta.",
   },
   {
     image: CarouselImage,
     subtitle: "Marcenas mattis egestas",
-    description: "Erdum et malesuada fames ac ante ileum primmer in faucibus uspendisse porta.",
+    description:
+      "Erdum et malesuada fames ac ante ileum primmer in faucibus uspendisse porta.",
   },
 ];
 
 const SignIn = () => {
   const [email, setEmail] = useState({ value: "", error: false, message: "" });
-  const [password, setPassword] = useState({ value: "", error: false, message: "" });
+  const [password, setPassword] = useState({
+    value: "",
+    error: false,
+    message: "",
+  });
 
   const handleFormChange = (event) => {
     let value = event.target.value;
@@ -44,7 +52,11 @@ const SignIn = () => {
       case "email":
         !value.trim() || emailRegex.test(value)
           ? setEmail({ value, error: false, message: "" })
-          : setEmail({ value, error: true, message: "O e-mail está incorreto" });
+          : setEmail({
+              value,
+              error: true,
+              message: "O e-mail está incorreto",
+            });
         break;
       case "password":
         !value.trim() || value.length > 6
@@ -59,14 +71,26 @@ const SignIn = () => {
   const handleFormSubmit = (event) => {
     event.preventDefault();
 
-    if (!email.value) setEmail({ ...email, error: true, message: "Este campo não pode ser vazio" });
+    if (!email.value)
+      setEmail({
+        ...email,
+        error: true,
+        message: "Este campo não pode ser vazio",
+      });
 
-    if (!password.value) setPassword({ ...password, error: true, message: "Este campo não pode ser vazio" });
+    if (!password.value)
+      setPassword({
+        ...password,
+        error: true,
+        message: "Este campo não pode ser vazio",
+      });
 
-    if (email.error || password.error) return;
+    if (!email.value || !password.value) return;
 
-    setEmail({ value: "", error: false, message: "" });
-    setPassword({ value: "", error: false, message: "" });
+    if (!email.error && !password.error) {
+      setEmail({ value: "", error: false, message: "" });
+      setPassword({ value: "", error: false, message: "" });
+    }
   };
 
   return (
@@ -92,7 +116,7 @@ const SignIn = () => {
               value={email.value}
               error={email.error}
               helperText={email.message}
-              inputProps={{"data-testid": "email"}}
+              inputProps={{ "data-testid": "email" }}
             />
           </div>
           <div className="form-group">
@@ -110,12 +134,20 @@ const SignIn = () => {
             </Link>
           </div>
           <div className="form-group">
-            <Button variant="contained" type="submit" data-testid="button-submit">
+            <Button
+              variant="contained"
+              type="submit"
+              data-testid="button-submit"
+            >
               Sign in
             </Button>
           </div>
           <Divider text="or" />
-          <Button variant="contained" startIcon={<GoogleIcon />} className="google-button">
+          <Button
+            variant="contained"
+            startIcon={<GoogleIcon />}
+            className="google-button"
+          >
             Sign in with Google
           </Button>
         </form>
